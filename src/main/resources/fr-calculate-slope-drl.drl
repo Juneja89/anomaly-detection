@@ -10,6 +10,6 @@ rule "calculate slope"
         RatioValue ratioValue2 = record.getRatioValues().get(2);
         
         modify(record){
-            ratioValue2.setSlove((ratioValue2.getData() - ratioValue0.getData()) / 2.0 );
+            record.getRatioValues().get(2).setSlope((ratioValue2.getData() - ratioValue0.getData()) / 2.0 );
         }
 end        
