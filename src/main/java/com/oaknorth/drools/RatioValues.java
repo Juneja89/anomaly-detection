@@ -5,7 +5,7 @@ package com.oaknorth.drools;
  */
 
 @javax.persistence.Entity
-public class RatioValues implements java.io.Serializable {
+public class RatioValue implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
@@ -14,16 +14,16 @@ public class RatioValues implements java.io.Serializable {
 	@javax.persistence.SequenceGenerator(name = "RATIOVALUES_ID_GENERATOR", sequenceName = "RATIOVALUES_ID_SEQ")
 	private java.lang.Long id;
 
-	@org.kie.api.definition.type.Label(value = "Financial Year")
+	@org.kie.api.definition.type.Label("Financial Year")
 	private java.lang.String financialYear;
 
-	@org.kie.api.definition.type.Label(value = "Data")
+	@org.kie.api.definition.type.Label("Data")
 	private double data;
 
-	@org.kie.api.definition.type.Label(value = "Absolute Anomaly")
+	@org.kie.api.definition.type.Label("Absolute Anomaly")
 	private int absoluteAnomaly;
 
-	public RatioValues() {
+	public RatioValue() {
 	}
 
 	public java.lang.Long getId() {
@@ -58,7 +58,7 @@ public class RatioValues implements java.io.Serializable {
 		this.absoluteAnomaly = absoluteAnomaly;
 	}
 
-	public RatioValues(java.lang.Long id, java.lang.String financialYear,
+	public RatioValue(java.lang.Long id, java.lang.String financialYear,
 			double data, int absoluteAnomaly) {
 		this.id = id;
 		this.financialYear = financialYear;
