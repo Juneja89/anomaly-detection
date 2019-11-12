@@ -34,12 +34,12 @@
         <condition-column52>
           <typedDefaultValue>
             <valueString></valueString>
-            <dataType>STRING</dataType>
+            <dataType>NUMERIC_DOUBLE</dataType>
             <isOtherwise>false</isOtherwise>
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
           <width>152</width>
-          <header>Max Data Value</header>
+          <header>Min Data Value</header>
           <constraintValueType>1</constraintValueType>
           <factField>data</factField>
           <fieldType>Double</fieldType>
@@ -49,12 +49,12 @@
         <condition-column52>
           <typedDefaultValue>
             <valueString></valueString>
-            <dataType>STRING</dataType>
+            <dataType>NUMERIC_DOUBLE</dataType>
             <isOtherwise>false</isOtherwise>
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
           <width>184</width>
-          <header>Min Data Value</header>
+          <header>Max Data Value</header>
           <constraintValueType>1</constraintValueType>
           <factField>data</factField>
           <fieldType>Double</fieldType>
