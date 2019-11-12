@@ -7,29 +7,63 @@ package com.oaknorth.drools;
 @javax.persistence.Entity
 public class RatioValues implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    @javax.persistence.GeneratedValue(generator = "RATIOVALUES_ID_GENERATOR", strategy = javax.persistence.GenerationType.AUTO)
-    @javax.persistence.Id
-    @javax.persistence.SequenceGenerator(name = "RATIOVALUES_ID_GENERATOR", sequenceName = "RATIOVALUES_ID_SEQ")
-    private java.lang.Long id;
+	@javax.persistence.GeneratedValue(generator = "RATIOVALUES_ID_GENERATOR", strategy = javax.persistence.GenerationType.AUTO)
+	@javax.persistence.Id
+	@javax.persistence.SequenceGenerator(name = "RATIOVALUES_ID_GENERATOR", sequenceName = "RATIOVALUES_ID_SEQ")
+	private java.lang.Long id;
 
-    public RatioValues() {
-    }
-    
-    public RatioValues(java.lang.Long id) {
-        this.id = id;
-    }
+	@org.kie.api.definition.type.Label(value = "Financial Year")
+	private java.lang.String financialYear;
 
-    public java.lang.Long getId() {
-        return this.id;
-    }
-    
-    public void setId(java.lang.Long id) {
-        this.id = id;
-    }
+	@org.kie.api.definition.type.Label(value = "Data")
+	private double data;
 
+	@org.kie.api.definition.type.Label(value = "Absolute Anomaly")
+	private int absoluteAnomaly;
 
+	public RatioValues() {
+	}
 
+	public java.lang.Long getId() {
+		return this.id;
+	}
+
+	public void setId(java.lang.Long id) {
+		this.id = id;
+	}
+
+	public java.lang.String getFinancialYear() {
+		return this.financialYear;
+	}
+
+	public void setFinancialYear(java.lang.String financialYear) {
+		this.financialYear = financialYear;
+	}
+
+	public double getData() {
+		return this.data;
+	}
+
+	public void setData(double data) {
+		this.data = data;
+	}
+
+	public int getAbsoluteAnomaly() {
+		return this.absoluteAnomaly;
+	}
+
+	public void setAbsoluteAnomaly(int absoluteAnomaly) {
+		this.absoluteAnomaly = absoluteAnomaly;
+	}
+
+	public RatioValues(java.lang.Long id, java.lang.String financialYear,
+			double data, int absoluteAnomaly) {
+		this.id = id;
+		this.financialYear = financialYear;
+		this.data = data;
+		this.absoluteAnomaly = absoluteAnomaly;
+	}
 
 }
