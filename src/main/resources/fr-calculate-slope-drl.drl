@@ -5,11 +5,15 @@ rule "calculate slope"
     when
         record : Record(ratioName == "Adjusted Gross Leverage")
     then
-        RatioValue ratioValue0 = record.getRatioValues().get(0);
-        RatioValue ratioValue1 = record.getRatioValues().get(1);
-        RatioValue ratioValue2 = record.getRatioValues().get(2);
+    List<RatioValue> ratioValues = record.getRatioValues();
+        RatioValue ratioValue0 = ratioValues.getRatioValues().get(0);
+        RatioValue ratioValue1 = ratioValues.getRatioValues().get(1);
+        RatioValue ratioValue2 = ratioValues.getRatioValues().get(2);
+        
+        ratioValue2.setSlope((ratioValue2.getData() - ratioValue0.getData()) / 2.0 );
+        ratioValue1.setSlope((ratioValue2.getData() - ratioValue1.getData()) );
         
         modify(record){
-            record.getRatioValues().get(2).setSlope((ratioValue2.getData() - ratioValue0.getData()) / 2.0 );
+            setRatioValues(ratioValues);
         }
 end        
