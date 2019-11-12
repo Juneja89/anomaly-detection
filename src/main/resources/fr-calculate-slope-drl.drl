@@ -14,6 +14,10 @@ rule "calculate slope"
         ratioValue2.setSlope((ratioValue2.getData() - ratioValue0.getData()) / 2.0 );
         ratioValue1.setSlope((ratioValue2.getData() - ratioValue1.getData()) );
         
+        ratioValue0.setRatioName(record.getRatioName());
+        ratioValue1.setRatioName(record.getRatioName());
+        ratioValue2.setRatioName(record.getRatioName());
+        
         modify(record){
             setRatioValues(ratioValues);
         }
