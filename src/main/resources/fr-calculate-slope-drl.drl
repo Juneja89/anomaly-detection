@@ -1,0 +1,16 @@
+import com.oaknorth.drools.Record;
+import com.oaknorth.drools.RatioValue;
+
+rule "calculate slope"
+    when
+        record : Record(ratioName == "Adjusted Gross Leverage")
+    then
+        RatioValue ratioValue0 = record.getRatioValues().get(0);
+        RatioValue ratioValue1 = record.getRatioValues().get(1);
+        RatioValue ratioValue2 = record.getRatioValues().get(2);
+        
+        modify(record){
+            ratioValue2.setSlove((ratioValue2.getData() - ratioValue0.getData()) / 2.0 ),
+            ratioValue1.setSlove((ratioValue2.getData() - ratioValue1.getData()));
+        }
+end        
