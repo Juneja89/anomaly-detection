@@ -9,7 +9,7 @@ public class RatioValue implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@javax.persistence.GeneratedValue(generator = "RATIOVALUES_ID_GENERATOR", strategy = javax.persistence.GenerationType.AUTO)
+	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "RATIOVALUES_ID_GENERATOR")
 	@javax.persistence.Id
 	@javax.persistence.SequenceGenerator(name = "RATIOVALUES_ID_GENERATOR", sequenceName = "RATIOVALUES_ID_SEQ")
 	private java.lang.Long id;
@@ -22,6 +22,9 @@ public class RatioValue implements java.io.Serializable {
 
 	@org.kie.api.definition.type.Label("Absolute Anomaly")
 	private int absoluteAnomaly;
+
+	@org.kie.api.definition.type.Label(value = "Ratio Name")
+	private java.lang.String ratioName;
 
 	public RatioValue() {
 	}
@@ -58,12 +61,21 @@ public class RatioValue implements java.io.Serializable {
 		this.absoluteAnomaly = absoluteAnomaly;
 	}
 
+	public java.lang.String getRatioName() {
+		return this.ratioName;
+	}
+
+	public void setRatioName(java.lang.String ratioName) {
+		this.ratioName = ratioName;
+	}
+
 	public RatioValue(java.lang.Long id, java.lang.String financialYear,
-			double data, int absoluteAnomaly) {
+			double data, int absoluteAnomaly, java.lang.String ratioName) {
 		this.id = id;
 		this.financialYear = financialYear;
 		this.data = data;
 		this.absoluteAnomaly = absoluteAnomaly;
+		this.ratioName = ratioName;
 	}
 
 }
