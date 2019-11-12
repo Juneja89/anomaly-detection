@@ -7,29 +7,139 @@ package com.oaknorth.drools;
 @javax.persistence.Entity
 public class Record implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    @javax.persistence.GeneratedValue(generator = "RECORD_ID_GENERATOR", strategy = javax.persistence.GenerationType.AUTO)
-    @javax.persistence.Id
-    @javax.persistence.SequenceGenerator(name = "RECORD_ID_GENERATOR", sequenceName = "RECORD_ID_SEQ")
-    private java.lang.Long id;
+	@javax.persistence.GeneratedValue(generator = "RECORD_ID_GENERATOR", strategy = javax.persistence.GenerationType.AUTO)
+	@javax.persistence.Id
+	@javax.persistence.SequenceGenerator(name = "RECORD_ID_GENERATOR", sequenceName = "RECORD_ID_SEQ")
+	private java.lang.Long id;
 
-    public Record() {
-    }
-    
-    public Record(java.lang.Long id) {
-        this.id = id;
-    }
+	@org.kie.api.definition.type.Label(value = "Company Id")
+	private int companyId;
 
-    public java.lang.Long getId() {
-        return this.id;
-    }
-    
-    public void setId(java.lang.Long id) {
-        this.id = id;
-    }
+	@org.kie.api.definition.type.Label(value = "Borrower Id")
+	private int borrowerId;
 
+	@org.kie.api.definition.type.Label(value = "Loan Id")
+	private int loanId;
 
+	@org.kie.api.definition.type.Label(value = "Data Version")
+	private java.lang.String dataVersion;
 
+	@org.kie.api.definition.type.Label(value = "Measurement Type")
+	private java.lang.String measurementType;
+
+	@org.kie.api.definition.type.Label(value = "Ratio Name")
+	private java.lang.String ratioName;
+
+	@org.kie.api.definition.type.Label(value = "Trend")
+	private java.lang.String trend;
+
+	@javax.persistence.ElementCollection(fetch = javax.persistence.FetchType.EAGER)
+	@org.kie.api.definition.type.Label(value = "Anomaly")
+	private java.util.List<java.lang.Integer> anomaly;
+
+	@org.kie.api.definition.type.Label(value = "AbsoluteMajorityAnomaly")
+	private int absoluteMajorityAnomaly;
+
+	public Record() {
+	}
+
+	public java.lang.Long getId() {
+		return this.id;
+	}
+
+	public void setId(java.lang.Long id) {
+		this.id = id;
+	}
+
+	public int getCompanyId() {
+		return this.companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public int getBorrowerId() {
+		return this.borrowerId;
+	}
+
+	public void setBorrowerId(int borrowerId) {
+		this.borrowerId = borrowerId;
+	}
+
+	public int getLoanId() {
+		return this.loanId;
+	}
+
+	public void setLoanId(int loanId) {
+		this.loanId = loanId;
+	}
+
+	public java.lang.String getDataVersion() {
+		return this.dataVersion;
+	}
+
+	public void setDataVersion(java.lang.String dataVersion) {
+		this.dataVersion = dataVersion;
+	}
+
+	public java.lang.String getMeasurementType() {
+		return this.measurementType;
+	}
+
+	public void setMeasurementType(java.lang.String measurementType) {
+		this.measurementType = measurementType;
+	}
+
+	public java.lang.String getRatioName() {
+		return this.ratioName;
+	}
+
+	public void setRatioName(java.lang.String ratioName) {
+		this.ratioName = ratioName;
+	}
+
+	public java.lang.String getTrend() {
+		return this.trend;
+	}
+
+	public void setTrend(java.lang.String trend) {
+		this.trend = trend;
+	}
+
+	public java.util.List<java.lang.Integer> getAnomaly() {
+		return this.anomaly;
+	}
+
+	public void setAnomaly(java.util.List<java.lang.Integer> anomaly) {
+		this.anomaly = anomaly;
+	}
+
+	public int getAbsoluteMajorityAnomaly() {
+		return this.absoluteMajorityAnomaly;
+	}
+
+	public void setAbsoluteMajorityAnomaly(int absoluteMajorityAnomaly) {
+		this.absoluteMajorityAnomaly = absoluteMajorityAnomaly;
+	}
+
+	public Record(java.lang.Long id, int companyId, int borrowerId, int loanId,
+			java.lang.String dataVersion, java.lang.String measurementType,
+			java.lang.String ratioName, java.lang.String trend,
+			java.util.List<java.lang.Integer> anomaly,
+			int absoluteMajorityAnomaly) {
+		this.id = id;
+		this.companyId = companyId;
+		this.borrowerId = borrowerId;
+		this.loanId = loanId;
+		this.dataVersion = dataVersion;
+		this.measurementType = measurementType;
+		this.ratioName = ratioName;
+		this.trend = trend;
+		this.anomaly = anomaly;
+		this.absoluteMajorityAnomaly = absoluteMajorityAnomaly;
+	}
 
 }
