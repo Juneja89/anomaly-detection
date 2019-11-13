@@ -4,7 +4,7 @@ import java.util.List;
 
 rule "calculate overall trend highlight increase positive case"
     when
-        record : Record(trend == "increasing", getRationValue().get(2) > 0)
+        record : Record(trend == "increasing")
     then
         List<Integer> anomaly = record.getAnomaly();
         anomaly.add(1);
@@ -15,7 +15,7 @@ end
 
 rule "calculate overall trend highlight increase negative case"
     when
-        record : Record(trend == "increasing", getRationValue().get(2) < 0)
+        record : Record(trend == "increasing")
     then
         List<Integer> anomaly = record.getAnomaly();
         anomaly.add(0);
