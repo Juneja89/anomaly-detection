@@ -15,3 +15,33 @@ rule "Row 1 fr-adjusted-gross-leverage-drl"
 				setRatioValues($ratioValueList);
 		}
 end
+
+//from row number: 1
+rule "Row 2 fr-adjusted-gross-leverage-drl"
+	dialect "mvel"
+	when
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 3.5 , data < 4.0) from $ratioValueList
+	
+	then
+	    ratioValue.setAbsoluteAnomaly(1);
+	
+		modify( $record ) {
+				setRatioValues($ratioValueList);
+		}
+end
+
+//from row number: 1
+rule "Row 3 fr-adjusted-gross-leverage-drl"
+	dialect "mvel"
+	when
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 4.0 , data < 10000) from $ratioValueList
+	
+	then
+	    ratioValue.setAbsoluteAnomaly(2);
+	
+		modify( $record ) {
+				setRatioValues($ratioValueList);
+		}
+end
