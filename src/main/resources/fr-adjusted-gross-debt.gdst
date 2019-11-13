@@ -80,7 +80,7 @@
       <boundName>ratioValue</boundName>
       <factField>absoluteAnomaly</factField>
       <type>Integer</type>
-      <valueList>0,1</valueList>
+      <valueList>0,1,2</valueList>
       <update>true</update>
     </set-field-col52>
   </actionCols>
@@ -228,7 +228,7 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueString>1</valueString>
+        <valueString>2</valueString>
         <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
