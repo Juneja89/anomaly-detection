@@ -1,0 +1,25 @@
+import com.oaknorth.drools.RatioValue;
+import com.oaknorth.drools.Record;
+import java.util.List;
+
+rule "calculate overall trend highlight increase positive case"
+    when
+        record : Record(trend == "increasing", getRationValue().get(2) > 0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(1);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
+rule "calculate overall trend highlight increase negative case"
+    when
+        record : Record(trend == "increasing", getRationValue().get(2) < 0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(0);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
