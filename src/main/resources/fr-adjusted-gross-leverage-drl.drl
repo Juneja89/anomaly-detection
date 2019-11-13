@@ -12,6 +12,6 @@ rule "Row 1 fr-adjusted-gross-leverage-drl"
 	    ratioValue.setAbsoluteAnomaly( 0 );
 	
 		modify( record ) {
-				// setAbsoluteAnomaly( 0 )
+				setRatioValues($ratioValueList);
 		}
 end
