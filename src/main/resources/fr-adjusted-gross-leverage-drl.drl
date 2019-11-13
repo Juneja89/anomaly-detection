@@ -2,7 +2,7 @@ import com.oaknorth.drools.RatioValue;
 import com.oaknorth.drools.Record;
 
 //from row number: 1
-rule "Row 1 fr-adjusted-gross-leverage-gdt"
+rule "Row 1 fr-adjusted-gross-leverage-drl"
 	dialect "mvel"
 	when
 		record : Record( ratioName == "Adjusted Gross Leverage" )
