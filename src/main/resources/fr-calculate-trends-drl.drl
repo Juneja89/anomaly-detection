@@ -24,6 +24,50 @@ rule "calculate overall trend highlight increase negative case"
         }
 end
 
+rule "calculate recent trend highlight increase positive case"
+    when
+        record : Record(trend == "increasing", ratioValues.get(1).getSlope() > 0.0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(1);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
+rule "calculate recent trend highlight increase negative case"
+    when
+        record : Record(trend == "increasing", ratioValues.get(1).getSlope() < 0.0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(0);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
+rule "calculate overall trend highlight decrease positive case"
+    when
+        record : Record(trend == "decreasing", ratioValues.get(2).getSlope() < 0.0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(1);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
+rule "calculate ovreall trend highlight decrease negative case"
+    when
+        record : Record(trend == "decreasing", ratioValues.get(2).getSlope() > 0.0)
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(0);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
 rule "calculate recent trend highlight decrease positive case"
     when
         record : Record(trend == "decreasing", ratioValues.get(1).getSlope() < 0.0)
