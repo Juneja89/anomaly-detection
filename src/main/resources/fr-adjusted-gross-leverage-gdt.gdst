@@ -43,7 +43,7 @@
           <constraintValueType>1</constraintValueType>
           <factField>data</factField>
           <fieldType>Double</fieldType>
-          <operator>&gt;</operator>
+          <operator>&gt;=</operator>
           <parameters/>
         </condition-column52>
         <condition-column52>
@@ -131,6 +131,7 @@
     <list>
       <value>
         <valueNumeric class="int">1</valueNumeric>
+        <valueString></valueString>
         <dataType>NUMERIC_INTEGER</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
@@ -165,6 +166,7 @@
     <list>
       <value>
         <valueNumeric class="int">2</valueNumeric>
+        <valueString></valueString>
         <dataType>NUMERIC_INTEGER</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
@@ -199,6 +201,7 @@
     <list>
       <value>
         <valueNumeric class="int">3</valueNumeric>
+        <valueString></valueString>
         <dataType>NUMERIC_INTEGER</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
