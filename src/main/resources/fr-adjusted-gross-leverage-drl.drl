@@ -5,6 +5,7 @@ import com.oaknorth.drools.Record;
 rule "Row 1 fr-adjusted-gross-leverage-drl"
 	dialect "mvel"
 	no-loop
+	lock-on-active
 	when
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
 		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
@@ -22,6 +23,7 @@ end
 rule "Row 2 fr-adjusted-gross-leverage-drl"
 	dialect "mvel"
 	no-loop
+	lock-on-active
 	when
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
 		ratioValue : RatioValue( data >= 3.5 , data < 4.0) from $ratioValueList
@@ -39,6 +41,7 @@ end
 rule "Row 3 fr-adjusted-gross-leverage-drl"
 	dialect "mvel"
 	no-loop
+	lock-on-active
 	when
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
 		ratioValue : RatioValue( data >= 4.0 , data < 10000) from $ratioValueList
