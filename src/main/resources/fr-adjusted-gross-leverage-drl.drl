@@ -11,7 +11,7 @@ rule "Row 1 fr-adjusted-gross-leverage-drl"
 	
 	then
 	    ratioValue.setAbsoluteAnomaly(0);
-	
+	    System.out.println("request comes to the rule name Row 1 fr-adjusted-gross-leverage-drl");
 		modify( $record ) {
 				setRatioValues($ratioValueList);
 		}
@@ -27,7 +27,7 @@ rule "Row 2 fr-adjusted-gross-leverage-drl"
 	
 	then
 	    ratioValue.setAbsoluteAnomaly(1);
-	
+	System.out.println("request comes to the rule name Row 2 fr-adjusted-gross-leverage-drl");
 		modify( $record ) {
 				setRatioValues($ratioValueList);
 		}
@@ -43,7 +43,7 @@ rule "Row 3 fr-adjusted-gross-leverage-drl"
 	
 	then
 	    ratioValue.setAbsoluteAnomaly(2);
-	
+	System.out.println("request comes to the rule name Row 3 fr-adjusted-gross-leverage-drl");
 		modify( $record ) {
 				setRatioValues($ratioValueList);
 		}
