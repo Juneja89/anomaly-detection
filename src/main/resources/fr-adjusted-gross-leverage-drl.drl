@@ -5,10 +5,10 @@ import com.oaknorth.drools.Record;
 rule "Row 1 fr-adjusted-gross-leverage-gdt"
 	dialect "mvel"
 	when
-		record : Record( ratioName == "Adjusted Gross Leverage"  )
+		record : Record( ratioName == "Adjusted Gross Leverage" )
 		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from accumulate record.ratioValues()
 	then
-		modify( record ) {
-				// setAbsoluteAnomaly( 0 )
-		}
+// 		modify( record ) {
+// 				// setAbsoluteAnomaly( 0 )
+// 		}
 end
