@@ -24,7 +24,7 @@ rule "calculate overall trend highlight increase negative case"
         }
 end
 
-rule "calculate overall trend highlight increase positive case"
+rule "calculate recent trend highlight decrease positive case"
     when
         record : Record(trend == "decreasing")
     then
@@ -35,7 +35,7 @@ rule "calculate overall trend highlight increase positive case"
         }
 end
 
-rule "calculate overall trend highlight increase negative case"
+rule "calculate recent trend highlight decrease negative case"
     when
         record : Record(trend == "decreasing")
     then
