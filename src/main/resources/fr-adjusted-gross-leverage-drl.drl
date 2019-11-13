@@ -5,8 +5,8 @@ import com.oaknorth.drools.Record;
 rule "Row 1 fr-adjusted-gross-leverage-drl"
 	dialect "mvel"
 	when
-		$record : Record( ratioName == "Adjusted Gross Leverage" )
-		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $record.ratioValues
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
 	
 	then
 	    ratioValue.setAbsoluteAnomaly( 0 );
