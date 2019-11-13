@@ -3,6 +3,7 @@ import com.oaknorth.drools.Record;
 import java.util.List;
 
 rule "calculate overall trend highlight increase positive case"
+lock-on-active
     when
         record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ))
         
@@ -15,6 +16,7 @@ rule "calculate overall trend highlight increase positive case"
 end
 
 rule "calculate overall trend highlight increase negative case"
+lock-on-active
     when
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ))
     then
@@ -26,6 +28,7 @@ rule "calculate overall trend highlight increase negative case"
 end
 
 rule "calculate recent trend highlight increase positive case"
+lock-on-active
     when
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ))
     then
@@ -37,6 +40,7 @@ rule "calculate recent trend highlight increase positive case"
 end
 
 rule "calculate recent trend highlight increase negative case"
+lock-on-active
     when
         record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ))
     then
@@ -48,6 +52,7 @@ rule "calculate recent trend highlight increase negative case"
 end
 
 rule "calculate overall trend highlight decrease positive case"
+lock-on-active
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ))
     then
@@ -59,6 +64,7 @@ rule "calculate overall trend highlight decrease positive case"
 end
 
 rule "calculate ovreall trend highlight decrease negative case"
+lock-on-active
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ))
     then
@@ -70,6 +76,7 @@ rule "calculate ovreall trend highlight decrease negative case"
 end
 
 rule "calculate recent trend highlight decrease positive case"
+lock-on-active
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ))
     then
@@ -81,6 +88,7 @@ rule "calculate recent trend highlight decrease positive case"
 end
 
 rule "calculate recent trend highlight decrease negative case"
+lock-on-active
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ))
     then
