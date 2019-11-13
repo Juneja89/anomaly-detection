@@ -9,7 +9,7 @@ rule "Row 1 fr-adjusted-gross-leverage-drl"
 		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
 	
 	then
-	    ratioValue.setAbsoluteAnomaly( 0 );
+	    ratioValue.setAbsoluteAnomaly(0);
 	
 		modify( record ) {
 				setRatioValues($ratioValueList);
