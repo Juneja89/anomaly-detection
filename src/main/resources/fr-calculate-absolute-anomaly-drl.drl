@@ -36,7 +36,7 @@ rule "Row 3 calculate absolute anomaly"
 	lock-on-active
 	when
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
-		ratioValue : RatioValue( data >= 4.0 , data < 10000) from $ratioValueList
+		ratioValue : RatioValue( data >= 4.0 ) from $ratioValueList
 	
 	then
 	    ratioValue.setAbsoluteAnomaly(2);
