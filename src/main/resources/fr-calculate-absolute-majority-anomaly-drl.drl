@@ -7,8 +7,7 @@ lock-on-active
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(doubleValue > 1) from accumulate(
-         RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
-         sum( $p ) )
+         RatioValue( $p : absoluteAnomaly )sum( $p ) from $ratioValueList )
     then
     System.out.println("rule 1 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(1);
@@ -21,8 +20,7 @@ lock-on-active
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(doubleValue <= 1) from accumulate(
-         RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
-         sum( $p ) )
+         RatioValue( $p : absoluteAnomaly )sum( $p ) from $ratioValueList )
     then
     System.out.println("rule 2 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(0);
