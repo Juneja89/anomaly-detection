@@ -9,7 +9,7 @@ rule "rule 1 calculate absolute majority anomaly"
          sum( $p ) )
     then
         modify(record){
-            set(absoluteMajorityAnomaly(1))
+            setAbsoluteMajorityAnomaly(1);
         }
 end
 
@@ -21,6 +21,6 @@ rule "rule 2 calculate absolute majority anomaly"
          sum( $p ) )
     then
         modify(record){
-            set(absoluteMajorityAnomaly(0))
+            setAbsoluteMajorityAnomaly(0);
         }
 end
