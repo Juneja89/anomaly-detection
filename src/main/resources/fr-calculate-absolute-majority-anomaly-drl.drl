@@ -10,7 +10,8 @@ lock-on-active
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
     then
-        record.setAbsoluteMajorityAnomaly(0);
+    System.out.println("rule 1 : total is::"+ $total);
+        record.setAbsoluteMajorityAnomaly(1);
         update(finance);
 end
 
@@ -23,6 +24,7 @@ lock-on-active
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
     then
+    System.out.println("rule 2 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(0);
         update(finance);
 end
