@@ -3,7 +3,7 @@ import com.oaknorth.drools.RatioValue;
 
 rule "rule 1 calculate absolute majority anomaly"
     when
-        record : (ratioName == "Adjusted Gross Leverage" , $ratioValueList: ratioValues)
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues)
         $total : Number() from accumulate(
          RatioValue( $p : ansoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
