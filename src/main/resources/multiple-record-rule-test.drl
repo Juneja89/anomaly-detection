@@ -1,0 +1,10 @@
+import com.oaknorth.drools.FinanceData;
+import com.oaknorth.drools.Record;
+import com.oaknorth.drools.RatioValue;
+
+rule "test"
+    when 
+        $record : Record( rationName == "Adjusted Gross Leverage" ) from Finance()
+    then
+        System.out.println("fire test rule");
+end
