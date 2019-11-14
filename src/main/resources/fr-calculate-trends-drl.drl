@@ -4,6 +4,7 @@ import java.util.List;
 
 rule "calculate overall trend highlight increase positive case"
 lock-on-active
+salience "100"
     when
         record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ))
         
@@ -17,6 +18,7 @@ end
 
 rule "calculate overall trend highlight increase negative case"
 lock-on-active
+salience "90"
     when
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ))
     then
@@ -27,32 +29,9 @@ lock-on-active
         }
 end
 
-rule "calculate recent trend highlight increase positive case"
-lock-on-active
-    when
-        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ))
-    then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(1);
-        modify(record){
-            setAnomaly(anomaly);
-        }
-end
-
-rule "calculate recent trend highlight increase negative case"
-lock-on-active
-    when
-        record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ))
-    then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(0);
-        modify(record){
-            setAnomaly(anomaly);
-        }
-end
-
 rule "calculate overall trend highlight decrease positive case"
 lock-on-active
+salience "80"
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ))
     then
@@ -65,6 +44,7 @@ end
 
 rule "calculate ovreall trend highlight decrease negative case"
 lock-on-active
+salience "70"
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ))
     then
@@ -75,8 +55,35 @@ lock-on-active
         }
 end
 
+rule "calculate recent trend highlight increase positive case"
+lock-on-active
+salience "60"
+    when
+        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ))
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(1);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
+rule "calculate recent trend highlight increase negative case"
+lock-on-active
+salience "50"
+    when
+        record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ))
+    then
+        List<Integer> anomaly = record.getAnomaly();
+        anomaly.add(0);
+        modify(record){
+            setAnomaly(anomaly);
+        }
+end
+
 rule "calculate recent trend highlight decrease positive case"
 lock-on-active
+salience "40"
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ))
     then
@@ -89,6 +96,7 @@ end
 
 rule "calculate recent trend highlight decrease negative case"
 lock-on-active
+salience "30"
     when
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ))
     then
@@ -97,4 +105,49 @@ lock-on-active
         modify(record){
             setAnomaly(anomaly);
         }
+end
+
+//from row number: 1
+rule "Row 2 calculate absolute anomaly"
+	dialect "mvel"
+	no-loop
+	lock-on-active
+	salience "20"
+	when
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 3.5 , data < 4.0) from $ratioValueList
+	
+	then
+	    ratioValue.setAbsoluteAnomaly(1);
+        update($record);
+end
+
+//from row number: 1
+rule "Row 3 calculate absolute anomaly"
+	dialect "mvel"
+	no-loop
+	lock-on-active
+	salience "10"
+	when
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 4.0 , data < 10000) from $ratioValueList
+	
+	then
+	    ratioValue.setAbsoluteAnomaly(2);
+        update($record);
+end
+
+//from row number: 1
+rule "Row 1 calculate absolute anomaly"
+	dialect "mvel"
+	no-loop
+	lock-on-active
+	
+	when
+		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues)
+		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
+	
+	then
+	    ratioValue.setAbsoluteAnomaly(0);
+        update($record);
 end
