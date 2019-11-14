@@ -20,7 +20,7 @@ rule "rule 2 calculate absolute majority anomaly"
         $total : Number() from accumulate(
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
-        ($total < 1.0) 
+        ($total <= 1.0) 
     then
         modify(record){
             set(absoluteMajorityAnomaly(0))
