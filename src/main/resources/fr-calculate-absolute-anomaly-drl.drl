@@ -49,7 +49,7 @@ rule "Row 1 calculate absolute anomaly of last year"
 	no-loop
 	lock-on-active
 	when
-		$record : Record( ratioName == "Adjusted Gross Leverage",  ratioValues.get(ratioValues.size() - 1).getAbsoluteAmonaly() > 0)
+		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getAbsoluteAnomaly() == 0))
 	
 	then
     	$record.getAnomaly().add(1);
@@ -62,7 +62,7 @@ rule "Row 2 calculate absolute anomaly of last year"
 	no-loop
 	lock-on-active
 	when
-		$record : Record( ratioName == "Adjusted Gross Leverage",  ratioValues.get(ratioValues.size() - 1).getAbsoluteAmonaly() == 0)
+		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getAbsoluteAnomaly() == 0))
 	
 	then
     	$record.getAnomaly().add(0);
