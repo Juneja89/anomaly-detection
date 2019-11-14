@@ -7,11 +7,10 @@ lock-on-active
 salience "100"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 )) from $recordList
+        record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
         
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(1);
+        anomalyList.add(1);
         update(finance);
 end
 
