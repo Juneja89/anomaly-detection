@@ -114,7 +114,7 @@ rule "Row 1 calculate absolute anomaly of last year"
 	lock-on-active
 	salience "20"
 	when
-		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getAbsoluteAnomaly() > 0))
+		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() >= 4.0))
 	
 	then
     	$record.getAnomaly().add(1);
@@ -128,7 +128,7 @@ rule "Row 2 calculate absolute anomaly of last year"
 	lock-on-active
 	salience "10"
 	when
-		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getAbsoluteAnomaly() == 0))
+		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() < 4.0))
 	
 	then
     	$record.getAnomaly().add(0);
