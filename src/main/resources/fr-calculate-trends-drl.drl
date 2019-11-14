@@ -65,7 +65,7 @@ salience "50"
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
-        anomaly.add(0);
+        anomalyList.add(0);
         update(finance);
 end
 
