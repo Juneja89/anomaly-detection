@@ -7,29 +7,40 @@ package com.oaknorth.drools;
 @javax.persistence.Entity
 public class FinanceData implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "FINANCEDATA_ID_GENERATOR")
-    @javax.persistence.Id
-    @javax.persistence.SequenceGenerator(name = "FINANCEDATA_ID_GENERATOR", sequenceName = "FINANCEDATA_ID_SEQ")
-    private java.lang.Long id;
+	@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "FINANCEDATA_ID_GENERATOR")
+	@javax.persistence.Id
+	@javax.persistence.SequenceGenerator(name = "FINANCEDATA_ID_GENERATOR", sequenceName = "FINANCEDATA_ID_SEQ")
+	private java.lang.Long id;
 
-    public FinanceData() {
-    }
-    
-    public FinanceData(java.lang.Long id) {
-        this.id = id;
-    }
+	@javax.persistence.OneToMany(fetch = javax.persistence.FetchType.EAGER, cascade = {javax.persistence.CascadeType.ALL})
+	@org.kie.api.definition.type.Label(value = "Records")
+	private java.util.List<com.oaknorth.drools.Record> records;
 
-    public java.lang.Long getId() {
-        return this.id;
-    }
-    
-    public void setId(java.lang.Long id) {
-        this.id = id;
-    }
+	public FinanceData() {
+	}
 
+	public java.lang.Long getId() {
+		return this.id;
+	}
 
+	public void setId(java.lang.Long id) {
+		this.id = id;
+	}
 
+	public java.util.List<com.oaknorth.drools.Record> getRecords() {
+		return this.records;
+	}
+
+	public void setRecords(java.util.List<com.oaknorth.drools.Record> records) {
+		this.records = records;
+	}
+
+	public FinanceData(java.lang.Long id,
+			java.util.List<com.oaknorth.drools.Record> records) {
+		this.id = id;
+		this.records = records;
+	}
 
 }
