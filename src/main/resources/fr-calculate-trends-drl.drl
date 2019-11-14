@@ -19,13 +19,10 @@ lock-on-active
 salience "90"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 )) from $recordList
+        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(0);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(0);
+        update(finance);
 end
 
 rule "calculate overall trend highlight decrease positive case"
@@ -33,13 +30,10 @@ lock-on-active
 salience "80"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 )) from $recordList
+        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(1);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(1);
+       update(finance);
 end
 
 rule "calculate ovreall trend highlight decrease negative case"
@@ -47,13 +41,10 @@ lock-on-active
 salience "70"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 )) from $recordList
+        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(0);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(0);
+        update(finance);
 end
 
 rule "calculate recent trend highlight increase positive case"
@@ -61,13 +52,10 @@ lock-on-active
 salience "60"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 )) from $recordList
+        record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(1);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(1);
+        update(finance);
 end
 
 rule "calculate recent trend highlight increase negative case"
@@ -75,13 +63,10 @@ lock-on-active
 salience "50"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 )) from $recordList
+        record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
         anomaly.add(0);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        update(finance);
 end
 
 rule "calculate recent trend highlight decrease positive case"
@@ -89,13 +74,10 @@ lock-on-active
 salience "40"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 )) from $recordList
+        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(1);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(1);
+        update(finance);
 end
 
 rule "calculate recent trend highlight decrease negative case"
@@ -103,13 +85,10 @@ lock-on-active
 salience "30"
     when
         finance : FinanceData($recordList : records)
-        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 )) from $recordList
+        record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
-        List<Integer> anomaly = record.getAnomaly();
-        anomaly.add(0);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        anomalyList.add(0);
+        update(finance);
 end
 
 //from row number: 1
@@ -124,7 +103,7 @@ rule "Row 1 calculate absolute anomaly of last year"
 	
 	then
     	$record.getAnomaly().add(1);
-	   update($record);
+	   update(finance);
 end
 
 //from row number: 1
@@ -139,5 +118,5 @@ rule "Row 2 calculate absolute anomaly of last year"
 	
 	then
     	$record.getAnomaly().add(0);
-	   update($record);
+	   update(finance);
 end
