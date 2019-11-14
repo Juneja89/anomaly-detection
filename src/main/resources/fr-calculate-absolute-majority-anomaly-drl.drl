@@ -7,6 +7,22 @@ rule "rule 1 calculate absolute majority anomaly"
         $total : Number() from accumulate(
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
+        ($total > 1.0) 
     then
-    
+        modify(record){
+            set(absoluteMajorityAnomaly(1))
+        }
+end
+
+rule "rule 2 calculate absolute majority anomaly"
+    when
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues)
+        $total : Number() from accumulate(
+         RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
+         sum( $p ) )
+        ($total < 1.0) 
+    then
+        modify(record){
+            set(absoluteMajorityAnomaly(0))
+        }
 end
