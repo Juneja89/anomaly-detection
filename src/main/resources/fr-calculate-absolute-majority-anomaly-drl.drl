@@ -4,7 +4,8 @@ import com.oaknorth.drools.RatioValue;
 rule "rule 1 calculate absolute majority anomaly"
 lock-on-active
     when
-        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues)
+        finance : FinanceData($recordList : records)
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(doubleValue > 1) from accumulate(
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
@@ -17,7 +18,8 @@ end
 rule "rule 2 calculate absolute majority anomaly"
 lock-on-active
     when
-        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues)
+        finance : FinanceData($recordList : records)
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(doubleValue <= 1) from accumulate(
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
