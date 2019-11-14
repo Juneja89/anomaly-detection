@@ -2,7 +2,7 @@ import com.oaknorth.drools.RatioValue;
 import com.oaknorth.drools.Record;
 
 //from row number: 1
-rule "Row 1 fr-adjusted-gross-leverage-drl"
+rule "Row 1 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
@@ -16,7 +16,7 @@ rule "Row 1 fr-adjusted-gross-leverage-drl"
 end
 
 //from row number: 1
-rule "Row 2 fr-adjusted-gross-leverage-drl"
+rule "Row 2 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
@@ -30,7 +30,7 @@ rule "Row 2 fr-adjusted-gross-leverage-drl"
 end
 
 //from row number: 1
-rule "Row 3 fr-adjusted-gross-leverage-drl"
+rule "Row 3 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
