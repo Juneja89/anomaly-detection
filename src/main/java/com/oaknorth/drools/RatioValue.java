@@ -26,9 +26,6 @@ public class RatioValue implements java.io.Serializable {
 	@org.kie.api.definition.type.Label("Ratio Name")
 	private java.lang.String ratioName;
 
-	@org.kie.api.definition.type.Label("Slope")
-	private double slope;
-
 	public RatioValue() {
 	}
 
@@ -72,23 +69,13 @@ public class RatioValue implements java.io.Serializable {
 		this.ratioName = ratioName;
 	}
 
-	public double getSlope() {
-		return this.slope;
-	}
-
-	public void setSlope(double slope) {
-		this.slope = slope;
-	}
-
 	public RatioValue(java.lang.Long id, java.lang.String financialYear,
-			double data, int absoluteAnomaly, java.lang.String ratioName,
-			double slope) {
+			double data, int absoluteAnomaly, java.lang.String ratioName) {
 		this.id = id;
 		this.financialYear = financialYear;
 		this.data = data;
 		this.absoluteAnomaly = absoluteAnomaly;
 		this.ratioName = ratioName;
-		this.slope = slope;
 	}
 
 }
