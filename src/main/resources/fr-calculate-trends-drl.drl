@@ -12,9 +12,7 @@ salience "100"
     then
         List<Integer> anomaly = record.getAnomaly();
         anomaly.add(1);
-        modify(record){
-            setAnomaly(anomaly);
-        }
+        update(finance);
 end
 
 rule "calculate overall trend highlight increase negative case"
