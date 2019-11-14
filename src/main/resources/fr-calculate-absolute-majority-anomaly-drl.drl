@@ -5,7 +5,7 @@ rule "rule 1 calculate absolute majority anomaly"
     when
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues)
         $total : Number() from accumulate(
-         RatioValue( $p : ansoluteAnomaly ) from $ratioValueList,
+         RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
     then
     
