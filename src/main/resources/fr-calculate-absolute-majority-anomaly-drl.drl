@@ -10,9 +10,8 @@ lock-on-active
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
     then
-        modify(record){
-            setAbsoluteMajorityAnomaly(1);
-        }
+        record.setAbsoluteMajorityAnomaly(0);
+        update(finance);
 end
 
 rule "rule 2 calculate absolute majority anomaly"
@@ -24,7 +23,6 @@ lock-on-active
          RatioValue( $p : absoluteAnomaly ) from $ratioValueList,
          sum( $p ) )
     then
-        modify(record){
-            setAbsoluteMajorityAnomaly(0);
-        }
+        record.setAbsoluteMajorityAnomaly(0);
+        update(finance);
 end
