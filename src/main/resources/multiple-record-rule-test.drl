@@ -4,7 +4,7 @@ import com.oaknorth.drools.RatioValue;
 
 rule "test"
     when 
-        $record : Record( rationName == "Adjusted Gross Leverage" ) from Finance()
+        $record : Record( ratioName == "Adjusted Gross Leverage" ) from Finance()
     then
         System.out.println("fire test rule");
 end
