@@ -66,12 +66,12 @@ lock-on-active
 salience "70"
     when
         finance : FinanceData($recordList : records)
-        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
+        $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(intValue > 1) from accumulate(
          RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
     then
         System.out.println("rule 1 : total is::"+ $total);
-        record.setAbsoluteMajorityAnomaly(1);
+        $record.setAbsoluteMajorityAnomaly(1);
         System.out.println("absolute majority anomaly"+ finance.getRecords().get(0).getAbsoluteMajorityAnomaly());
         modify(finance){
             setRecords($recordList);
@@ -83,12 +83,12 @@ lock-on-active
 salience "60"
     when
         finance : FinanceData($recordList : records)
-        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
+        $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(intValue <= 1) from accumulate(
          RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
     then
         System.out.println("rule 2 : total is::"+ $total);
-        record.setAbsoluteMajorityAnomaly(0);
+        $record.setAbsoluteMajorityAnomaly(0);
         modify(finance){
             setRecords($recordList);
         }
