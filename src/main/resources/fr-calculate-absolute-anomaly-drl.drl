@@ -70,9 +70,6 @@ salience "70"
         System.out.println("rule 1 : total is::"+ total);
         $record.setAbsoluteMajorityAnomaly(1);
         System.out.println("absolute majority anomaly"+ finance.getRecords().get(0).getAbsoluteMajorityAnomaly());
-         modify(finance){
-            setRecords($recordList);
-        }
 end
 
 rule "rule 2 calculate absolute majority anomaly"
@@ -91,7 +88,4 @@ salience "60"
         }
         $record.setAbsoluteMajorityAnomaly(0);
         finance.setRecords($recordList);
-         modify(finance){
-            setRecords($recordList);
-        }
 end
