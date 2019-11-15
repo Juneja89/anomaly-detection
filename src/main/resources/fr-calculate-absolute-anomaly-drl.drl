@@ -63,7 +63,6 @@ import com.oaknorth.drools.RatioValue;
 
 rule "rule 1 calculate absolute majority anomaly"
 lock-on-active
-no-loop
 salience "70"
     when
         finance : FinanceData($recordList : records)
@@ -80,7 +79,6 @@ end
 
 rule "rule 2 calculate absolute majority anomaly"
 lock-on-active
-no-loop
 salience "60"
     when
         finance : FinanceData($recordList : records)
