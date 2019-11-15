@@ -63,7 +63,6 @@ import com.oaknorth.drools.Record;
 import com.oaknorth.drools.RatioValue;
 
 rule "rule 1 calculate absolute majority anomaly"
-lock-on-active
 no-loop
 salience "70"
     when
@@ -80,7 +79,6 @@ salience "70"
 end
 
 rule "rule 2 calculate absolute majority anomaly"
-lock-on-active
 no-loop
 salience "60"
     when
