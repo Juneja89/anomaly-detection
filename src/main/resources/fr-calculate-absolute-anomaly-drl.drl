@@ -15,7 +15,7 @@ rule "Row 1 calculate absolute anomaly"
     	System.out.println("Row 1 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(0);
         modify(finance){
-            setRecords($ratioValueList);
+            setRecords($recordList);
         }
 end
 
@@ -33,7 +33,7 @@ rule "Row 2 calculate absolute anomaly"
 	    System.out.println("Row 2 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(1);
        modify(finance){
-            setRecords($ratioValueList);
+            setRecords($recordList);
         }
 end
 
@@ -51,7 +51,7 @@ rule "Row 3 calculate absolute anomaly"
 	    System.out.println("Row 3 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(2);
         modify(finance){
-            setRecords($ratioValueList);
+            setRecords($recordList);
         }
 end
 
@@ -70,7 +70,7 @@ salience "70"
         System.out.println("rule 1 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(1);
         modify(finance){
-            setRecords($ratioValueList);
+            setRecords($recordList);
         }
 end
 
@@ -86,6 +86,6 @@ salience "60"
         System.out.println("rule 2 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(0);
         modify(finance){
-            setRecords($ratioValueList);
+            setRecords($recordList);
         }
 end
