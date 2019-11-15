@@ -64,8 +64,8 @@ salience "70"
     when
         finance : FinanceData($recordList : records)
         $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
-        $total : Number(intValue > 1) from accumulate(
-         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
+        total : List(size > 1) from collect(
+         RatioValue( absoluteAnomaly > 1 ) from $ratioValueList )
     then
         System.out.println("rule 1 : total is::"+ $total);
         $record.setAbsoluteMajorityAnomaly(1);
@@ -81,30 +81,13 @@ salience "60"
     when
         finance : FinanceData($recordList : records)
         $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
-        $total : Number(doubleValue < 1) from accumulate(
-         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
+        total : List(size > 1) from collect(
+         RatioValue( absoluteAnomaly <= 1 ) from $ratioValueList )
          
     then
-        System.out.println("rule 2 : total is::"+ $total);
+        System.out.println("rule 2 : total is::"+ total);
         $record.setAbsoluteMajorityAnomaly(0);
         finance.setRecords($recordList);
-         modify(finance){
-            setRecords($recordList);
-        }
-end
-
-rule "rule 3 calculate absolute majority anomaly"
-lock-on-active true
-salience "50"
-    when
-        finance : FinanceData($recordList : records)
-        $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
-        $total : Number(doubleValue == 1) from accumulate(
-         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
-    then
-        System.out.println("rule 1 : total is::"+ $total);
-        $record.setAbsoluteMajorityAnomaly(1);
-        System.out.println("absolute majority anomaly"+ finance.getRecords().get(0).getAbsoluteMajorityAnomaly());
          modify(finance){
             setRecords($recordList);
         }
