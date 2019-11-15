@@ -10,6 +10,7 @@ salience "100"
         record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
         
     then
+        System.out.println("calculate overall trend highlight increase positive case");
         anomalyList.add(1);
         update(finance);
 end
@@ -21,6 +22,7 @@ salience "90"
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate overall trend highlight increase negative case");
         anomalyList.add(0);
         update(finance);
 end
@@ -32,6 +34,7 @@ salience "80"
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate overall trend highlight decrease positive case");
         anomalyList.add(1);
        update(finance);
 end
@@ -43,6 +46,7 @@ salience "70"
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate ovreall trend highlight decrease negative case");
         anomalyList.add(0);
         update(finance);
 end
@@ -54,6 +58,7 @@ salience "60"
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate recent trend highlight increase positive case");
         anomalyList.add(1);
         update(finance);
 end
@@ -65,6 +70,7 @@ salience "50"
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate recent trend highlight increase negative case");
         anomalyList.add(0);
         update(finance);
 end
@@ -76,6 +82,7 @@ salience "40"
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate recent trend highlight decrease positive case");
         anomalyList.add(1);
         update(finance);
 end
@@ -87,6 +94,7 @@ salience "30"
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
     then
+        System.out.println("calculate recent trend highlight decrease negative case");
         anomalyList.add(0);
         update(finance);
 end
@@ -100,8 +108,8 @@ rule "Row 1 calculate absolute anomaly of last year"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() >= 4.0)) from $recordList
-	
 	then
+	    System.out.println("Row 1 calculate absolute anomaly of last year");
     	$record.getAnomaly().add(1);
 	   update(finance);
 end
@@ -115,8 +123,8 @@ rule "Row 2 calculate absolute anomaly of last year"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() < 4.0)) from $recordList
-	
 	then
+	    System.out.println("Row 2 calculate absolute anomaly of last year");
     	$record.getAnomaly().add(0);
 	   update(finance);
 end
