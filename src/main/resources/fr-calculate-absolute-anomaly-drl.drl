@@ -64,7 +64,6 @@ import com.oaknorth.drools.RatioValue;
 rule "rule 1 calculate absolute majority anomaly"
 lock-on-active
 salience "70"
-agenda-group "calculate absolute anomaly"
     when
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
@@ -82,7 +81,6 @@ end
 rule "rule 2 calculate absolute majority anomaly"
 lock-on-active
 salience "60"
-agenda-group "calculate absolute anomaly"
     when
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
