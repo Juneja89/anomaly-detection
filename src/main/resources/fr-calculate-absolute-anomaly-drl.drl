@@ -95,7 +95,7 @@ end
 
 rule "rule 3 calculate absolute majority anomaly"
 lock-on-active true
-salience "70"
+salience "50"
     when
         finance : FinanceData($recordList : records)
         $record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
