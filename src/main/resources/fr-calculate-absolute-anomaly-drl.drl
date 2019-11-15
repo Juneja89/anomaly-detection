@@ -12,6 +12,7 @@ rule "Row 1 calculate absolute anomaly"
 		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
 	
 	then
+	System.out.println("Row 1 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(0);
         update(finance);
 end
@@ -27,6 +28,7 @@ rule "Row 2 calculate absolute anomaly"
 		ratioValue : RatioValue( data >= 3.5 , data < 4.0) from $ratioValueList
 	
 	then
+	    System.out.println("Row 2 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(1);
         update(finance);
 end
@@ -42,6 +44,7 @@ rule "Row 3 calculate absolute anomaly"
 		ratioValue : RatioValue( data >= 4.0 ) from $ratioValueList
 	
 	then
+	    System.out.println("Row 3 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(2);
         update(finance);
 end
