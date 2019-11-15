@@ -67,7 +67,7 @@ salience "70"
         total : List(size > 1) from collect(
          RatioValue( absoluteAnomaly > 1 ) from $ratioValueList )
     then
-        System.out.println("rule 1 : total is::"+ $total);
+        System.out.println("rule 1 : total is::"+ total);
         $record.setAbsoluteMajorityAnomaly(1);
         System.out.println("absolute majority anomaly"+ finance.getRecords().get(0).getAbsoluteMajorityAnomaly());
          modify(finance){
