@@ -6,6 +6,7 @@ rule "Row 1 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
+	salience "100"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -22,6 +23,7 @@ rule "Row 2 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
+	salience "90"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -38,6 +40,7 @@ rule "Row 3 calculate absolute anomaly"
 	dialect "mvel"
 	no-loop
 	lock-on-active
+	salience "80"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -46,5 +49,38 @@ rule "Row 3 calculate absolute anomaly"
 	then
 	    System.out.println("Row 3 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(2);
+        update(finance);
+end
+
+import com.oaknorth.drools.Record;
+import com.oaknorth.drools.RatioValue;
+
+rule "rule 1 calculate absolute majority anomaly"
+lock-on-active
+no-loop
+salience "70"
+    when
+        finance : FinanceData($recordList : records)
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
+        $total : Number(intValue > 1) from accumulate(
+         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
+    then
+        System.out.println("rule 1 : total is::"+ $total);
+        record.setAbsoluteMajorityAnomaly(1);
+        update(finance);
+end
+
+rule "rule 2 calculate absolute majority anomaly"
+lock-on-active
+no-loop
+salience "60"
+    when
+        finance : FinanceData($recordList : records)
+        record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
+        $total : Number(intValue <= 1) from accumulate(
+         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
+    then
+        System.out.println("rule 2 : total is::"+ $total);
+        record.setAbsoluteMajorityAnomaly(0);
         update(finance);
 end
