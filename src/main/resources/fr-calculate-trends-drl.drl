@@ -1,3 +1,4 @@
+import com.oaknorth.drools.FinanceData;
 import com.oaknorth.drools.RatioValue;
 import com.oaknorth.drools.Record;
 import java.util.List;
