@@ -5,7 +5,7 @@ import java.util.List;
 
 rule "calculate overall trend highlight increase positive case"
 lock-on-active
-salience "100"
+salience "200"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing" , ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
@@ -20,7 +20,7 @@ end
 
 rule "calculate overall trend highlight increase negative case"
 lock-on-active
-salience "90"
+salience "190"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
@@ -34,7 +34,7 @@ end
 
 rule "calculate overall trend highlight decrease positive case"
 lock-on-active
-salience "80"
+salience "180"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
@@ -48,7 +48,7 @@ end
 
 rule "calculate ovreall trend highlight decrease negative case"
 lock-on-active
-salience "70"
+salience "170"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(0).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
@@ -62,7 +62,7 @@ end
 
 rule "calculate recent trend highlight increase positive case"
 lock-on-active
-salience "60"
+salience "160"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing",  ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
@@ -74,7 +74,7 @@ end
 
 rule "calculate recent trend highlight increase negative case"
 lock-on-active
-salience "50"
+salience "150"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "increasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
@@ -88,7 +88,7 @@ end
 
 rule "calculate recent trend highlight decrease positive case"
 lock-on-active
-salience "40"
+salience "140"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) < 0.0 ), anomalyList : anomaly) from $recordList
@@ -100,7 +100,7 @@ end
 
 rule "calculate recent trend highlight decrease negative case"
 lock-on-active
-salience "30"
+salience "130"
     when
         finance : FinanceData($recordList : records)
         record : Record(trend == "decreasing", ((ratioValues.get(ratioValues.size() - 1).getData() -  ratioValues.get(ratioValues.size() - 2).getData()) > 0.0 ), anomalyList : anomaly) from $recordList
@@ -117,7 +117,7 @@ rule "Row 1 calculate absolute anomaly of last year"
 	dialect "mvel"
 	no-loop
 	lock-on-active
-	salience "20"
+	salience "120"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() >= 4.0)) from $recordList
@@ -134,7 +134,7 @@ rule "Row 2 calculate absolute anomaly of last year"
 	dialect "mvel"
 	no-loop
 	lock-on-active
-	salience "10"
+	salience "110"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  (ratioValues.get(ratioValues.size() - 1).getData() < 4.0)) from $recordList
