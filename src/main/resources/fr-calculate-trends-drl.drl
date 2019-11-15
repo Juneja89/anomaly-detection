@@ -13,7 +13,9 @@ salience "100"
     then
         System.out.println("calculate overall trend highlight increase positive case");
         anomalyList.add(1);
-        update(finance);
+        modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "calculate overall trend highlight increase negative case"
@@ -25,7 +27,9 @@ salience "90"
     then
         System.out.println("calculate overall trend highlight increase negative case");
         anomalyList.add(0);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "calculate overall trend highlight decrease positive case"
@@ -37,7 +41,9 @@ salience "80"
     then
         System.out.println("calculate overall trend highlight decrease positive case");
         anomalyList.add(1);
-       update(finance);
+        modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "calculate ovreall trend highlight decrease negative case"
@@ -49,7 +55,9 @@ salience "70"
     then
         System.out.println("calculate ovreall trend highlight decrease negative case");
         anomalyList.add(0);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "calculate recent trend highlight increase positive case"
@@ -73,7 +81,9 @@ salience "50"
     then
         System.out.println("calculate recent trend highlight increase negative case");
         anomalyList.add(0);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "calculate recent trend highlight decrease positive case"
@@ -97,7 +107,9 @@ salience "30"
     then
         System.out.println("calculate recent trend highlight decrease negative case");
         anomalyList.add(0);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
 
 //from row number: 1
@@ -112,7 +124,9 @@ rule "Row 1 calculate absolute anomaly of last year"
 	then
 	    System.out.println("Row 1 calculate absolute anomaly of last year");
     	$record.getAnomaly().add(1);
-	   update(finance);
+	    modify(finance){
+            setRecords($recordList);
+        }
 end
 
 //from row number: 1
@@ -127,5 +141,7 @@ rule "Row 2 calculate absolute anomaly of last year"
 	then
 	    System.out.println("Row 2 calculate absolute anomaly of last year");
     	$record.getAnomaly().add(0);
-	   update(finance);
+	    modify(finance){
+            setRecords($recordList);
+        }
 end
