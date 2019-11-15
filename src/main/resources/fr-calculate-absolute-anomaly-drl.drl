@@ -7,6 +7,7 @@ rule "Row 1 calculate absolute anomaly"
 	lock-on-active
 	no-loop
 	salience "100"
+	agenda-group "calculate absolute anomaly"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -26,6 +27,7 @@ rule "Row 2 calculate absolute anomaly"
 	lock-on-active
 	no-loop
 	salience "90"
+	agenda-group "calculate absolute anomaly"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -45,6 +47,7 @@ rule "Row 3 calculate absolute anomaly"
 	lock-on-active
 	no-loop
 	salience "80"
+	agenda-group "calculate absolute anomaly"
 	when
 	    finance : FinanceData($recordList : records)
 		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
@@ -64,11 +67,12 @@ import com.oaknorth.drools.RatioValue;
 rule "rule 1 calculate absolute majority anomaly"
 lock-on-active
 salience "70"
+agenda-group "calculate absolute anomaly"
     when
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
         $total : Number(intValue > 1) from accumulate(
-         RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
+         RatioValue( $value : com.oaknorth.drools.Record( ) ) from $ratioValueList, sum($value) )
     then
         System.out.println("rule 1 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(1);
@@ -80,6 +84,7 @@ end
 rule "rule 2 calculate absolute majority anomaly"
 lock-on-active
 salience "60"
+agenda-group "calculate absolute anomaly"
     when
         finance : FinanceData($recordList : records)
         record : Record(ratioName == "Adjusted Gross Leverage", $ratioValueList: ratioValues) from $recordList
