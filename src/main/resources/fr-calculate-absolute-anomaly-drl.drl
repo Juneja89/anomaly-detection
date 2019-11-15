@@ -76,6 +76,7 @@ agenda-group "calculate absolute anomaly"
     then
         System.out.println("rule 1 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(1);
+        System.out.println("absolute majority anomaly"+ finance.getRecords(1).getAbsoluteMajorityAnomaly());
         modify(finance){
             setRecords($recordList);
         }
