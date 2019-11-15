@@ -59,7 +59,7 @@ rule "Row 3 calculate absolute anomaly"
 end
 
 rule "rule 1 calculate absolute majority anomaly"
-lock-on-active true
+no-loop true
 salience "70"
     when
         finance : FinanceData($recordList : records)
@@ -76,7 +76,7 @@ salience "70"
 end
 
 rule "rule 2 calculate absolute majority anomaly"
-lock-on-active true
+no-loop true
 salience "60"
     when
         finance : FinanceData($recordList : records)
