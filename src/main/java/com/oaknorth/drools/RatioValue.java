@@ -23,9 +23,6 @@ public class RatioValue implements java.io.Serializable {
 	@org.kie.api.definition.type.Label("Absolute Anomaly")
 	private int absoluteAnomaly;
 
-	@org.kie.api.definition.type.Label("Ratio Name")
-	private java.lang.String ratioName;
-
 	public RatioValue() {
 	}
 
@@ -53,14 +50,6 @@ public class RatioValue implements java.io.Serializable {
 		this.data = data;
 	}
 
-	public java.lang.String getRatioName() {
-		return this.ratioName;
-	}
-
-	public void setRatioName(java.lang.String ratioName) {
-		this.ratioName = ratioName;
-	}
-
 	public int getAbsoluteAnomaly() {
 		return this.absoluteAnomaly;
 	}
@@ -70,12 +59,11 @@ public class RatioValue implements java.io.Serializable {
 	}
 
 	public RatioValue(java.lang.Long id, java.lang.String financialYear,
-			double data, int absoluteAnomaly, java.lang.String ratioName) {
+			double data, int absoluteAnomaly) {
 		this.id = id;
 		this.financialYear = financialYear;
 		this.data = data;
 		this.absoluteAnomaly = absoluteAnomaly;
-		this.ratioName = ratioName;
 	}
 
 }
