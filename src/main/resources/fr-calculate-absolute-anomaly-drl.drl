@@ -15,6 +15,7 @@ rule "Row 1 calculate absolute anomaly"
 	then
     	System.out.println("Row 1 calculate absolute anomaly");
 	    ratioValue.setAbsoluteAnomaly(0);
+	    $record.setAbsoluteMajorityAnomaly(1);
         modify(finance){
             setRecords($recordList);
         }
