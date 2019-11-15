@@ -4,8 +4,8 @@ import com.oaknorth.drools.Record;
 //from row number: 1
 rule "Row 1 calculate absolute anomaly"
 	dialect "mvel"
-	lock-on-active
-	no-loop
+	lock-on-active true
+	no-loop true
 	salience "100"
 	when
 	    finance : FinanceData($recordList : records)
@@ -23,8 +23,8 @@ end
 //from row number: 1
 rule "Row 2 calculate absolute anomaly"
 	dialect "mvel"
-	lock-on-active
-	no-loop
+	lock-on-active true
+	no-loop true
 	salience "90"
 	when
 	    finance : FinanceData($recordList : records)
@@ -42,8 +42,8 @@ end
 //from row number: 1
 rule "Row 3 calculate absolute anomaly"
 	dialect "mvel"
-	lock-on-active
-	no-loop
+	lock-on-active true
+	no-loop true
 	salience "80"
 	when
 	    finance : FinanceData($recordList : records)
@@ -62,7 +62,8 @@ import com.oaknorth.drools.Record;
 import com.oaknorth.drools.RatioValue;
 
 rule "rule 1 calculate absolute majority anomaly"
-no-loop
+no-loop true
+lock-on-active true
 salience "70"
     when
         finance : FinanceData($recordList : records)
@@ -78,7 +79,8 @@ salience "70"
 end
 
 rule "rule 2 calculate absolute majority anomaly"
-no-loop
+no-loop true
+lock-on-active true
 salience "60"
     when
         finance : FinanceData($recordList : records)
