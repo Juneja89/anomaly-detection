@@ -5,6 +5,7 @@ import com.oaknorth.drools.Record;
 rule "Row 1 calculate absolute anomaly"
 	dialect "mvel"
 	lock-on-active
+	no-loop
 	salience "100"
 	when
 	    finance : FinanceData($recordList : records)
@@ -23,6 +24,7 @@ end
 rule "Row 2 calculate absolute anomaly"
 	dialect "mvel"
 	lock-on-active
+	no-loop
 	salience "90"
 	when
 	    finance : FinanceData($recordList : records)
@@ -41,6 +43,7 @@ end
 rule "Row 3 calculate absolute anomaly"
 	dialect "mvel"
 	lock-on-active
+	no-loop
 	salience "80"
 	when
 	    finance : FinanceData($recordList : records)
