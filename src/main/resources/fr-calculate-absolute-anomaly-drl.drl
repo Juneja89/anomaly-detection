@@ -58,11 +58,7 @@ rule "Row 3 calculate absolute anomaly"
         }
 end
 
-import com.oaknorth.drools.Record;
-import com.oaknorth.drools.RatioValue;
-
 rule "rule 1 calculate absolute majority anomaly"
-no-loop true
 lock-on-active true
 salience "70"
     when
@@ -74,12 +70,12 @@ salience "70"
         System.out.println("rule 1 : total is::"+ $total);
         $record.setAbsoluteMajorityAnomaly(1);
         System.out.println("absolute majority anomaly"+ finance.getRecords().get(0).getAbsoluteMajorityAnomaly());
-        finance.setRecords($recordList);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
 
 rule "rule 2 calculate absolute majority anomaly"
-no-loop true
 lock-on-active true
 salience "60"
     when
@@ -91,5 +87,7 @@ salience "60"
         System.out.println("rule 2 : total is::"+ $total);
         $record.setAbsoluteMajorityAnomaly(0);
         finance.setRecords($recordList);
-        update(finance);
+         modify(finance){
+            setRecords($recordList);
+        }
 end
