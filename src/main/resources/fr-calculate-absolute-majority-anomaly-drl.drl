@@ -10,7 +10,7 @@ no-loop
         $total : Number(intValue > 1) from accumulate(
          RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
     then
-    System.out.println("rule 1 : total is::"+ $total);
+        System.out.println("rule 1 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(1);
         update(finance);
 end
@@ -24,7 +24,7 @@ no-loop
         $total : Number(intValue <= 1) from accumulate(
          RatioValue( $value : absoluteAnomaly ) from $ratioValueList, sum($value) )
     then
-    System.out.println("rule 2 : total is::"+ $total);
+        System.out.println("rule 2 : total is::"+ $total);
         record.setAbsoluteMajorityAnomaly(0);
         update(finance);
 end
