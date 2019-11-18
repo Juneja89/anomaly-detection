@@ -1,63 +1,6 @@
 import com.oaknorth.drools.RatioValue;
 import com.oaknorth.drools.Record;
 
-//from row number: 1
-rule "Row 1 calculate absolute anomaly"
-	dialect "mvel"
-	lock-on-active true
-	no-loop true
-	salience "100"
-	when
-	    finance : FinanceData($recordList : records)
-		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
-		ratioValue : RatioValue( data >= 0.0 , data < 3.5) from $ratioValueList
-	
-	then
-    	System.out.println("Row 1 calculate absolute anomaly");
-	    ratioValue.setAbsoluteAnomaly(0);
-        modify(finance){
-            setRecords($recordList);
-        }
-end
-
-//from row number: 1
-rule "Row 2 calculate absolute anomaly"
-	dialect "mvel"
-	lock-on-active true
-	no-loop true
-	salience "90"
-	when
-	    finance : FinanceData($recordList : records)
-		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
-		ratioValue : RatioValue( data >= 3.5 , data < 4.0) from $ratioValueList
-	
-	then
-	    System.out.println("Row 2 calculate absolute anomaly");
-	    ratioValue.setAbsoluteAnomaly(1);
-       modify(finance){
-            setRecords($recordList);
-        }
-end
-
-//from row number: 1
-rule "Row 3 calculate absolute anomaly"
-	dialect "mvel"
-	lock-on-active true
-	no-loop true
-	salience "80"
-	when
-	    finance : FinanceData($recordList : records)
-		$record : Record( ratioName == "Adjusted Gross Leverage",  $ratioValueList : ratioValues) from $recordList
-		ratioValue : RatioValue( data >= 4.0 ) from $ratioValueList
-	
-	then
-	    System.out.println("Row 3 calculate absolute anomaly");
-	    ratioValue.setAbsoluteAnomaly(2);
-        modify(finance){
-            setRecords($recordList);
-        }
-end
-
 rule "rule 1 calculate absolute majority anomaly"
 no-loop true
 salience "70"
