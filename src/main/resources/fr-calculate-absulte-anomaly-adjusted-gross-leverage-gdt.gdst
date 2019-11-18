@@ -133,7 +133,7 @@
             </constraints>
           </constraintList>
           <factType>FinanceData</factType>
-          <boundName>finance</boundName>
+          <boundName>$finance</boundName>
           <isNegated>false</isNegated>
           <window>
             <parameters/>
@@ -161,32 +161,13 @@
       <definition>
         <org.drools.workbench.models.datamodel.rule.FromCompositeFactPattern>
           <factPattern>
-            <constraintList>
-              <constraints>
-                <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                  <value>$value</value>
-                  <operator>==</operator>
-                  <constraintValueType>7</constraintValueType>
-                  <expression>
-                    <parts/>
-                    <index>2147483647</index>
-                  </expression>
-                  <parameters/>
-                  <factType>Record</factType>
-                  <fieldName>ratioName</fieldName>
-                  <fieldType>String</fieldType>
-                </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-              </constraints>
-            </constraintList>
             <factType>Record</factType>
-            <boundName>record</boundName>
             <isNegated>false</isNegated>
             <window>
               <parameters/>
             </window>
           </factPattern>
           <expression>
-            <binding></binding>
             <parts>
               <org.drools.workbench.models.datamodel.rule.ExpressionVariable>
                 <next class="org.drools.workbench.models.datamodel.rule.ExpressionCollection">
@@ -196,7 +177,7 @@
                   <genericType>Collection</genericType>
                   <parametricType>Record</parametricType>
                 </next>
-                <name>finance</name>
+                <name>$finance</name>
                 <classType>FinanceData</classType>
                 <genericType>FinanceData</genericType>
                 <factType>FinanceData</factType>
@@ -213,11 +194,9 @@
           <width>100</width>
           <header>Record</header>
           <constraintValueType>1</constraintValueType>
-          <factField>ratioName</factField>
-          <fieldType>String</fieldType>
+          <fieldType>Boolean</fieldType>
           <parameters/>
-          <varName>$value</varName>
-          <factType>Record</factType>
+          <varName></varName>
         </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
       </childColumns>
     </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
@@ -429,8 +408,9 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueString>Adjusted Gross Leverage</valueString>
-        <dataType>STRING</dataType>
+        <valueBoolean>false</valueBoolean>
+        <valueString></valueString>
+        <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
@@ -493,8 +473,9 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueString>Adjusted Gross Leverage</valueString>
-        <dataType>STRING</dataType>
+        <valueBoolean>false</valueBoolean>
+        <valueString></valueString>
+        <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
@@ -557,8 +538,9 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueString>Adjusted Gross Leverage</valueString>
-        <dataType>STRING</dataType>
+        <valueBoolean>false</valueBoolean>
+        <valueString></valueString>
+        <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
