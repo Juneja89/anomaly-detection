@@ -85,23 +85,6 @@
                 <fieldName>records</fieldName>
                 <fieldType>Collection</fieldType>
               </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-              <org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
-                <compositeJunctionType>&amp;&amp;</compositeJunctionType>
-                <constraints>
-                  <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                    <constraintValueType>0</constraintValueType>
-                    <expression>
-                      <parts/>
-                      <index>2147483647</index>
-                    </expression>
-                    <parameters/>
-                    <fieldBinding>recordList</fieldBinding>
-                    <factType>FinanceData</factType>
-                    <fieldName>records</fieldName>
-                    <fieldType>Collection</fieldType>
-                  </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                </constraints>
-              </org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
             </constraints>
           </constraintList>
           <factType>FinanceData</factType>
