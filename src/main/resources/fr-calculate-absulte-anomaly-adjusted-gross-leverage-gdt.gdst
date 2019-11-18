@@ -85,6 +85,51 @@
                 <fieldName>records</fieldName>
                 <fieldType>Collection</fieldType>
               </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+              <org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
+                <compositeJunctionType>&amp;&amp;</compositeJunctionType>
+                <constraints>
+                  <org.drools.workbench.models.datamodel.rule.SingleFieldConstraintEBLeftSide>
+                    <value>0</value>
+                    <operator>&gt;</operator>
+                    <constraintValueType>1</constraintValueType>
+                    <expression>
+                      <parts/>
+                      <index>2147483647</index>
+                    </expression>
+                    <parameters/>
+                    <factType>FinanceData</factType>
+                    <fieldName>size</fieldName>
+                    <fieldType>int</fieldType>
+                    <expLeftSide>
+                      <parts>
+                        <org.drools.workbench.models.datamodel.rule.ExpressionUnboundFact>
+                          <next class="org.drools.workbench.models.datamodel.rule.ExpressionCollection">
+                            <prev class="org.drools.workbench.models.datamodel.rule.ExpressionUnboundFact" reference="../.."/>
+                            <next class="org.drools.workbench.models.datamodel.rule.ExpressionMethod">
+                              <prev class="org.drools.workbench.models.datamodel.rule.ExpressionCollection" reference="../.."/>
+                              <name>size</name>
+                              <classType>int</classType>
+                              <genericType>Integer</genericType>
+                              <params/>
+                            </next>
+                            <name>records</name>
+                            <classType>java.util.List</classType>
+                            <genericType>Collection</genericType>
+                            <parametricType>Record</parametricType>
+                          </next>
+                          <name>FinanceData</name>
+                          <classType>FinanceData</classType>
+                          <genericType>FinanceData</genericType>
+                          <factType>FinanceData</factType>
+                        </org.drools.workbench.models.datamodel.rule.ExpressionUnboundFact>
+                        <org.drools.workbench.models.datamodel.rule.ExpressionCollection reference="../org.drools.workbench.models.datamodel.rule.ExpressionUnboundFact/next"/>
+                        <org.drools.workbench.models.datamodel.rule.ExpressionMethod reference="../org.drools.workbench.models.datamodel.rule.ExpressionUnboundFact/next/next"/>
+                      </parts>
+                      <index>2147483647</index>
+                    </expLeftSide>
+                  </org.drools.workbench.models.datamodel.rule.SingleFieldConstraintEBLeftSide>
+                </constraints>
+              </org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
             </constraints>
           </constraintList>
           <factType>FinanceData</factType>
