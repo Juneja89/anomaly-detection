@@ -30,7 +30,7 @@
         <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </typedDefaultValue>
-      <hideColumn>true</hideColumn>
+      <hideColumn>false</hideColumn>
       <width>100</width>
       <attribute>no-loop</attribute>
       <reverseOrder>false</reverseOrder>
@@ -43,7 +43,7 @@
         <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </typedDefaultValue>
-      <hideColumn>true</hideColumn>
+      <hideColumn>false</hideColumn>
       <width>100</width>
       <attribute>lock-on-active</attribute>
       <reverseOrder>false</reverseOrder>
@@ -64,7 +64,7 @@
   </attributeCols>
   <conditionPatterns>
     <org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
-      <hideColumn>true</hideColumn>
+      <hideColumn>false</hideColumn>
       <width>-1</width>
       <header>Finance Data</header>
       <constraintValueType>1</constraintValueType>
@@ -142,7 +142,7 @@
       </definition>
       <childColumns>
         <org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
-          <hideColumn>true</hideColumn>
+          <hideColumn>false</hideColumn>
           <width>100</width>
           <header>Finance Data</header>
           <constraintValueType>1</constraintValueType>
@@ -161,7 +161,25 @@
       <definition>
         <org.drools.workbench.models.datamodel.rule.FromCompositeFactPattern>
           <factPattern>
+            <constraintList>
+              <constraints>
+                <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                  <value>$RuleName</value>
+                  <operator>==</operator>
+                  <constraintValueType>7</constraintValueType>
+                  <expression>
+                    <parts/>
+                    <index>2147483647</index>
+                  </expression>
+                  <parameters/>
+                  <factType>Record</factType>
+                  <fieldName>ratioName</fieldName>
+                  <fieldType>String</fieldType>
+                </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+              </constraints>
+            </constraintList>
             <factType>Record</factType>
+            <boundName>$record</boundName>
             <isNegated>false</isNegated>
             <window>
               <parameters/>
@@ -194,9 +212,11 @@
           <width>100</width>
           <header>Record</header>
           <constraintValueType>1</constraintValueType>
-          <fieldType>Boolean</fieldType>
+          <factField>ratioName</factField>
+          <fieldType>String</fieldType>
           <parameters/>
-          <varName></varName>
+          <varName>$RuleName</varName>
+          <factType>Record</factType>
         </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
       </childColumns>
     </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
@@ -211,36 +231,41 @@
           <factPattern>
             <constraintList>
               <constraints>
-                <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                  <value>$minValue</value>
-                  <operator>&gt;=</operator>
-                  <constraintValueType>7</constraintValueType>
-                  <expression>
-                    <parts/>
-                    <index>2147483647</index>
-                  </expression>
-                  <parameters/>
-                  <factType>RatioValue</factType>
-                  <fieldName>data</fieldName>
-                  <fieldType>Double</fieldType>
-                </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
-                  <value>$maxValue</value>
-                  <operator>&lt;</operator>
-                  <constraintValueType>7</constraintValueType>
-                  <expression>
-                    <parts/>
-                    <index>2147483647</index>
-                  </expression>
-                  <parameters/>
-                  <factType>RatioValue</factType>
-                  <fieldName>data</fieldName>
-                  <fieldType>Double</fieldType>
-                </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                <org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
+                  <compositeJunctionType>&amp;&amp;</compositeJunctionType>
+                  <constraints>
+                    <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                      <value>$minValue</value>
+                      <operator>&gt;=</operator>
+                      <constraintValueType>7</constraintValueType>
+                      <expression>
+                        <parts/>
+                        <index>2147483647</index>
+                      </expression>
+                      <parameters/>
+                      <factType>RatioValue</factType>
+                      <fieldName>data</fieldName>
+                      <fieldType>Double</fieldType>
+                    </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                    <org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                      <value>$maxValue</value>
+                      <operator>&lt;</operator>
+                      <constraintValueType>7</constraintValueType>
+                      <expression>
+                        <parts/>
+                        <index>2147483647</index>
+                      </expression>
+                      <parameters/>
+                      <factType>RatioValue</factType>
+                      <fieldName>data</fieldName>
+                      <fieldType>Double</fieldType>
+                    </org.drools.workbench.models.datamodel.rule.SingleFieldConstraint>
+                  </constraints>
+                </org.drools.workbench.models.datamodel.rule.CompositeFieldConstraint>
               </constraints>
             </constraintList>
             <factType>RatioValue</factType>
-            <boundName>ratioValue</boundName>
+            <boundName>$ratioValue</boundName>
             <isNegated>false</isNegated>
             <window>
               <parameters/>
@@ -256,7 +281,7 @@
                   <genericType>Collection</genericType>
                   <parametricType>RatioValue</parametricType>
                 </next>
-                <name>record</name>
+                <name>$record</name>
                 <classType>Record</classType>
                 <genericType>Record</genericType>
                 <factType>Record</factType>
@@ -303,7 +328,7 @@
       <hideColumn>false</hideColumn>
       <width>100</width>
       <header>Absolute Anomaly</header>
-      <boundName>ratioValue</boundName>
+      <boundName>$ratioValue</boundName>
       <factField>absoluteAnomaly</factField>
       <type>Integer</type>
       <valueList>0,1,2</valueList>
@@ -408,9 +433,8 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueBoolean>false</valueBoolean>
-        <valueString></valueString>
-        <dataType>BOOLEAN</dataType>
+        <valueString>Adjusted Gross Leverage</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
@@ -467,15 +491,14 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueBoolean>false</valueBoolean>
+        <valueBoolean>true</valueBoolean>
         <valueString></valueString>
         <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueBoolean>false</valueBoolean>
-        <valueString></valueString>
-        <dataType>BOOLEAN</dataType>
+        <valueString>Adjusted Gross Leverage</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
@@ -532,15 +555,14 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueBoolean>false</valueBoolean>
+        <valueBoolean>true</valueBoolean>
         <valueString></valueString>
         <dataType>BOOLEAN</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueBoolean>false</valueBoolean>
-        <valueString></valueString>
-        <dataType>BOOLEAN</dataType>
+        <valueString>Adjusted Gross Leverage</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
