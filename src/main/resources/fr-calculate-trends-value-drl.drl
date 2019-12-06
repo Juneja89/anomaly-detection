@@ -1,0 +1,42 @@
+import com.oaknorth.drools.FinanceData;
+import com.oaknorth.drools.RatioValue;
+import com.oaknorth.drools.Record;
+import java.util.List;
+import java.math.BigDecimal;
+
+rule "calculate trends for more than 3 ratio values"
+no-loop true
+salience 250
+enabled true
+dialect "java"
+    when
+        finance : FinanceData( records != null, records.size() > 0, $recordList : records)
+        record : Record (ratioValues != null, ratioValues.size() >= 3) from $recordList
+    then
+        System.out.println("calculate trends for more than 3 ratio values");
+        List<Record> recorList = finance.getRecords();
+        List<RatioValue> ratioValuesList =  record.getRatioValues();
+        record.setOverallTrendDecreasingValue((double)((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(0).getData()) + ((ratioValuesList.get(0).getData()) * (record.getDeviation()) / 100.0))));
+        record.setOverallTrendIncreasingValue((double)((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(0).getData()) - ((ratioValuesList.get(0).getData())) * (record.getDeviation()) / 100.0)));
+        record.setRecentTrendDecreasingValue((double)((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) + ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) * (record.getDeviation()) / 100.0))));
+        record.setRecentTrendIncreasingValue((double)((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) * (record.getDeviation()) / 100.0))));
+        update(finance);
+        System.out.println("record.getRecentTrendDecreasingValue()::"+record.getRecentTrendDecreasingValue());
+end
+
+rule "calculate trends for 2 ratio values value"
+no-loop true
+salience 250
+enabled true
+dialect "java"
+    when
+        finance : FinanceData( records != null, records.size() > 0, $recordList : records)
+        record : Record (ratioValues != null, ratioValues.size() == 2) from $recordList
+    then
+        System.out.println("calculate trends for 2 ratio values value");
+        List<Record> recorList = finance.getRecords();
+        List<RatioValue> ratioValuesList =  record.getRatioValues();
+        record.setRecentTrendDecreasingValue((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) + ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) * (10) / 100)));
+        record.setRecentTrendIncreasingValue((ratioValuesList.get(ratioValuesList.size() - 1).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) - ((ratioValuesList.get(ratioValuesList.size() - 2).getData()) * (10) / 100)));
+        update(finance);
+end

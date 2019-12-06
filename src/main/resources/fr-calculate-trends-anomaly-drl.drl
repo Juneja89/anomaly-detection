@@ -1,0 +1,20 @@
+import com.oaknorth.drools.FinanceData;
+import com.oaknorth.drools.RatioValue;
+import com.oaknorth.drools.Record;
+import java.util.List;
+
+//from row number: 1
+rule "Row 1 calculate absolute anomaly of last year"
+	dialect "java"
+	no-loop true
+	lock-on-active true
+	salience "90"
+	when
+	    finance : FinanceData($recordList : records)
+		$record : Record() from $recordList
+	then
+	    System.out.println("Row 1 calculate absolute anomaly of last year");
+	    List<RatioValue> ratioValues = $record.getRatioValues();
+	    int value = ratioValues.get(ratioValues.size() - 1).getAbsoluteAnomaly();
+    	$record.getAnomaly().add(value == 0? 0 : 1);
+end
